@@ -146,6 +146,40 @@ export default {
       color: 'MDXPGray0',
       fontSize: '1.2em',
     },
+
+    pre: {
+      fontFamily: 'mono',
+      fontSize: 'xl',
+      overflow: 'auto',
+      margin: '3rem -3rem',
+      '.line-number-style': {
+        display: 'inline-block',
+        width: '2em',
+        userSelect: 'none',
+        opacity: 0.3,
+        textAlign: 'center',
+        position: 'relative',
+      },
+      '.highlight-line': {
+        backgroundColor: 'rgb(2, 55, 81)',
+        borderLeft: '4px solid rgb(2, 155, 206)',
+        '.line-number-style': {
+          width: 'calc(2em - 4px)',
+          opacity: 0.5,
+          left: '-2px',
+        },
+      },
+      scrollbarColor: 'primary #639',
+      '::-webkit-scrollbar': { width: '15px' },
+      '::-webkit-scrollbar-track': {
+        background: '#639',
+      },
+      '::-webkit-scrollbar-thumb': {
+        backgroundColor: 'primary',
+        borderRadius: '14px',
+        border: '2px solid #639',
+      },
+    },
   },
 
   mdxp: {
