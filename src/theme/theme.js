@@ -94,7 +94,7 @@ export default {
     },
 
     subtitle: {
-      fontFamily: 'body',
+      fontFamily: 'title',
       lineHeight: 'title',
       fontWeight: 'light',
       // textTransform: 'lowercase',
