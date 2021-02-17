@@ -4,6 +4,7 @@ import Deck, { Zoom } from '@mdxp/core'
 import ReactDOM from 'react-dom'
 import { jsx } from 'theme-ui'
 import MDXPresentation from './presentation.mdx'
+import theme from './theme/theme'
 
 const Index = () => {
   return (
@@ -13,7 +14,7 @@ const Index = () => {
       aspectRatio={16 / 9}
       sx={{ maxWidth: '100vw', maxHeight: '100vh' }}
     >
-      <Deck components={components}>
+      <Deck components={components} theme={theme}>
         <MDXPresentation />
       </Deck>
     </Zoom>
