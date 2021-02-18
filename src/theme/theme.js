@@ -105,16 +105,18 @@ export default {
 
   gradient: {
     light: {
-      background: t =>
-        `radial-gradient(100% 100% at 50% 0%, ${t.colors.MDXPGray6} 0%, ${t.colors.MDXPGray4} 100%)`,
+      background: theme =>
+        `radial-gradient(100% 100% at 50% 0%, 
+          ${theme.colors.MDXPGray6} 0%, 
+          ${theme.colors.MDXPGray4} 100%)`,
     },
     dark: {
-      background: t =>
-        `radial-gradient(100% 100% at 50% 0%, ${t.colors.MDXPGray2} 0%, ${t.colors.MDXPGray1} 100%)`,
+      background: theme =>
+        `radial-gradient(100% 100% at 50% 0%, ${theme.colors.MDXPGray2} 0%, ${theme.colors.MDXPGray1} 100%)`,
     },
     yellow: {
-      background: t =>
-        `linear-gradient(270deg, ${t.colors.MDXPYellow} 0%, ${t.colors.MDXPOrange} 250%)`,
+      background: theme =>
+        `linear-gradient(270deg, ${theme.colors.MDXPYellow} 0%, ${theme.colors.MDXPOrange} 250%)`,
     },
   },
 
