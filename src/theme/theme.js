@@ -82,7 +82,9 @@ export default {
     mono: {
       fontFamily: 'mono',
       lineHeight: 'mono',
-      fontSize: ['xsmall', 'xxsmall', 'xxsmall', 'xsmall'],
+      fontSize: ['xsmall', 'small', 'base'],
+      backgroundColor: 'MDXPGray5',
+      padding: '0 10px',
     },
 
     title: {
@@ -126,9 +128,10 @@ export default {
       bg: 'black',
     },
 
-    pre: {
+    code: {
       variant: 'text.mono',
       overFlow: 'auto',
+      fontSize: '2.2em',
     },
 
     p: {
@@ -170,16 +173,6 @@ export default {
           opacity: 0.5,
           left: '-2px',
         },
-      },
-      scrollbarColor: 'primary #639',
-      '::-webkit-scrollbar': { width: '15px' },
-      '::-webkit-scrollbar-track': {
-        background: '#639',
-      },
-      '::-webkit-scrollbar-thumb': {
-        backgroundColor: 'primary',
-        borderRadius: '14px',
-        border: '2px solid #639',
       },
     },
   },

@@ -1,9 +1,13 @@
 import React from 'react'
 import { Callout } from './components/callout'
 import CodeHighlight from './components/code'
-import { Tweet as MDXTweet, CodePen as MDXCodePen } from 'mdx-embed'
+import {
+  Tweet as MDXTweet,
+  CodePen as MDXCodePen,
+  YouTube as MDXYouTube,
+} from 'mdx-embed'
 
-// set the width on the tweet
+// Yes it looks like I have to set the width of each MDX Embed component
 const Tweet = props => {
   return (
     <div style={{ width: '100%' }}>
@@ -11,11 +15,17 @@ const Tweet = props => {
     </div>
   )
 }
-// set the width
 const CodePen = props => {
   return (
     <div style={{ width: '70%' }}>
       <MDXCodePen {...props} />
+    </div>
+  )
+}
+const YouTube = props => {
+  return (
+    <div style={{ width: '60%' }}>
+      <MDXYouTube {...props} />
     </div>
   )
 }
@@ -25,4 +35,5 @@ export default {
   Callout,
   Tweet,
   CodePen,
+  YouTube,
 }
