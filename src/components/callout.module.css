@@ -21,7 +21,7 @@
 }
 
 .infoBox.info::before {
-  content: '🔑';
+  content: 'ℹ';
   background-color: #b4aaff;
 }
 

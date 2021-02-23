@@ -2,9 +2,8 @@
 
 ## Hello Hammer 🔨
 
-Scott Spence •
-
-<span style={{ color: '#663399' }}>MMT_TechMeetup</span>
+Scott Spence • <span
+style={{ color: '#663399' }}>MMT_TechMeetup</span>
 
 <small>Feb 2021</small>
 
@@ -52,7 +51,7 @@ Scott Spence •
 <Note>
 
 - I'm also a Windows user
-- Are you all warming to me yet 😊
+- I hope you are all warming to me now 😊
 
 </Note>
 
@@ -67,7 +66,8 @@ Scott Spence •
 - At this point we're pretty much a Government contractor with two
   large scale Gatsby projects in production
 - None of which I have worked on or can talk about because, NDA
-- Anyway, moving on
+- I'm not here to talk about any of that this evening
+- Sooo, moving on!
 
 </Note>
 
@@ -77,9 +77,14 @@ Scott Spence •
 
 <Note>
 
-- There is the ASI style guide
-- It looks like they've remove the SSL cert on it so be warned if
-  you're visiting it
+- Once quick note on one project I can share, that's the Aberdeen
+  Standard Investments Style Guide
+- I'm mentioning this because it uses MDX
+- It's v0.6 of gatsby-mdx rather than the gatsby-plugin-mdx so that's
+  a little indication of how old that project is
+- For context gatsby-plugin-mdx is now v1.8 if you like numbers
+- Just one last thing about the ASI styleguide, it looks like the SSL
+  cert has gone now so be warned if you're visiting it
 
 </Note>
 
@@ -111,8 +116,6 @@ Scott Spence •
 
 - Not entirely about NextJS
 - More about MDX, really
-- The ASI style guide was made with MDX, this was just as MDX was
-  released with Gatsby
 
 </Note>
 
@@ -179,6 +182,8 @@ https://mdxjs.com/conf
   - Sara Viera at Vue Conf London 2018
 - Being a blogger/digital gardener/thought pamphlet author this really
   useful
+- This presentation is super bare bones, I didn't have time to make it
+  pretty
 - Why is it useful?
 - MDX allows for the addition of JSX to Markdown, so React components
   in your documentation.
@@ -190,7 +195,29 @@ https://mdxjs.com/conf
 
 ---
 
-https://www.joshwcomeau.com/react/folding-the-dom/
+<Callout variant="info">
+  https://www.joshwcomeau.com/react/folding-the-dom/
+</Callout>
+
+<Note>
+
+- This was one of the first real world implementations of MDX in a
+  site
+- this blew my mind!
+- Lets check it out quickly
+
+</Note>
+
+---
+
+# 🤯
+
+<Note>
+
+- This led me down the path of wanting to incorporate MDX into my site
+- And everthing else, see the slides title
+
+</Note>
 
 ---
 
@@ -208,6 +235,8 @@ https://www.joshwcomeau.com/react/folding-the-dom/
 <Note>
 
 - I'm on the MDX Embed core team
+- MDX Embed is pretty neat, it soon came to light that I wanted this
+  for all the Tweets and YouTube videos I wanted to embed in my site
 - MDX Embed means embedding things like
 
 </Note>
@@ -251,35 +280,167 @@ https://www.joshwcomeau.com/react/folding-the-dom/
 ## MDX Gatsby Plugin
 
 ```bash
-npm install mdx-embed gatsby-plugin-mdx-embed --save
+npm install gatsby-plugin-mdx @mdx-js/mdx @mdx-js/react
 ```
+
+<Note>
+
+- Ok let's look at what we need to do to get set up with MDX in a
+  Gatsby project
+
+</Note>
 
 ---
 
-I won't pretend to know how any of it works I'm ok with abstractions
+## MDX Embed Gatsby Plugin
+
+```bash
+npm install mdx-embed gatsby-plugin-mdx-embed
+```
+
+<Note>
+
+- FYI you can also add in MDX Embed at this point too
+
+</Note>
 
 ---
 
 <CodeHighlight>
 
 ```js {2}
-console.log('=====================')
-console.log(`wheeeee`)
-console.log('=====================')
+module.exports = {
+  siteMetadata,
+  plugins: [
+    // all other gatsby plugins
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    },
+  ],
+}
 ```
+
+<Note>
+
+- Fun fact you don't explicitly have to define the file types, I
+  discodered this on a live stream with James Q Quick
+- The extension was wrong but still imported the files
+
+</Note>
 
 </CodeHighlight>
 
 ---
 
-<Callout variant="danger">
-  error Cannot query field "body" on type "Mdx". Did you mean
-  "rawBody"? graphql/template-strings
-</Callout>
+<CodeHighlight>
+
+```js {7}
+{
+  resolve: `gatsby-plugin-mdx`,
+  options: {
+    extensions: [`.mdx`, `.md`],
+    gatsbyRemarkPlugins: [
+      `gatsby-remark-copy-linked-files`,
+      `gatsby-remark-images`,
+    ],
+  },
+},
+```
+
+<Note>
+
+- You can also add in any Remark Plugins you might want as well
+
+</Note>
+
+</CodeHighlight>
 
 ---
 
-https://twitter.com/bradgarropy/status/1352472699520610304
+<CodeHighlight>
+
+```js {4}
+{
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    path: `${__dirname}/content/`,
+    name: `content`,
+  },
+},
+```
+
+<Note>
+
+- I won't pretend to know how any of it works I'm ok with abstractions
+
+</Note>
+
+</CodeHighlight>
+
+---
+
+<CodeHighlight>
+
+```jsx {3}
+export const wrapPageElement = ({ element }) => (
+  <MDXProvider components={components}>
+    <Layout>{element}</Layout>
+  </MDXProvider>
+)
+```
+
+<Note>
+
+- High up in the component tree you need to wrap your MDX components
+  in the MDXProvider
+- This can be added to the gatsby-prowser and gatsby-ssr files
+
+</Note>
+
+</CodeHighlight>
+
+---
+
+<CodeHighlight>
+
+```js
+import { wrapPageElement as wrap } from './src/root-wrapper'
+
+export const wrapPageElement = wrap
+```
+
+<Note>
+
+- Or you can create on file and import that into the two files, both
+  work but you're only maintaining one file the other way
+
+</Note>
+
+</CodeHighlight>
+
+---
+
+# Fin
+
+<Note>
+
+- This was the section where I was meant to talk about integrating MDX
+  into NextJS
+- Unfortunately I have run out of time on the slides for this, so I
+  apologise for that
+
+</Note>
+
+---
+
+<Tweet
+  tweetLink="bradgarropy/status/1352472699520610304"
+  align="center"
+  hideConversation={true}
+/>
 
 ---
 
