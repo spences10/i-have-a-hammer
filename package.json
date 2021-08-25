@@ -54,7 +54,7 @@
     "react-dev-utils": "11.0.4",
     "remark-code-import": "0.3.0",
     "rehype-katex": "4.0.0",
-    "remark-emoji": "2.2.0",
+    "remark-emoji": "3.0.1",
     "remark-math": "3.0.1",
     "rimraf": "3.0.2",
     "style-loader": "3.2.1",
