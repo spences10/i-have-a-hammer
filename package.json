@@ -44,7 +44,7 @@
     "@mdxp/pdf": "0.2.1",
     "@mdxp/rehypex-plugins": "0.2.1",
     "@svgr/webpack": "5.5.0",
-    "babel-loader": "8.2.2",
+    "babel-loader": "8.2.3",
     "cross-env": "7.0.3",
     "css-loader": "6.4.0",
     "file-loader": "6.2.0",
